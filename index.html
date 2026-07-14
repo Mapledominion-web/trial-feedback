@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
-        /* ===== 样式保持不变（仅截取核心，完整见下方） ===== */
+        /* ===== Reset & Variables ===== */
         :root {
             --theme-color: #fe5924;
             --theme-color-two: #26ba5e;
@@ -235,6 +235,18 @@
         }
         .broker-item.best-match .broker-name { color: var(--theme-color-two); }
 
+        /* ===== Performance highlight ===== */
+        .performance {
+            background: rgba(254, 89, 36, 0.06);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-weight: 700;
+            color: var(--theme-color);
+            font-size: 15px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
         /* ===== Forms ===== */
         .form-group { margin-bottom: 24px; }
         .form-group label {
@@ -336,7 +348,23 @@
         }
         .steps .step.active .num { background: var(--theme-color); color: #fff; }
         .steps .step.active { color: var(--secondary-color); }
+        .steps .step.completed .num { background: var(--theme-color-two); color: #fff; }
         .steps .step-line { width: 30px; height: 2px; background: rgba(27, 30, 49, 0.10); }
+
+        /* ===== Confirmation Page ===== */
+        #confirmation {
+            display: none;
+            text-align: center;
+            padding: 50px 30px;
+        }
+        #confirmation .big-icon {
+            font-size: 64px;
+            color: var(--theme-color-two);
+            margin-bottom: 20px;
+        }
+        #confirmation h2 { font-size: 32px; margin-bottom: 12px; }
+        #confirmation p { font-size: 18px; color: var(--text-color); max-width: 600px; margin: 0 auto 20px; }
+        #confirmation .btn { margin-top: 20px; }
 
         /* ===== Responsive ===== */
         @media (max-width: 768px) {
@@ -384,15 +412,19 @@
             <div class="brand-name">Maple <span>Dominion</span></div>
         </div>
 
-        <!-- ===== Steps ===== -->
-        <div class="steps">
-            <div class="step active"><span class="num">1</span> Feedback</div>
+        <!-- ===== Steps Indicator ===== -->
+        <div class="steps" id="stepIndicator">
+            <div class="step active" data-step="1">
+                <span class="num">1</span> Feedback
+            </div>
             <span class="step-line"></span>
-            <div class="step"><span class="num">2</span> Questionnaire</div>
+            <div class="step" data-step="2">
+                <span class="num">2</span> Choose Broker
+            </div>
             <span class="step-line"></span>
-            <div class="step"><span class="num">3</span> Compare Brokers</div>
-            <span class="step-line"></span>
-            <div class="step"><span class="num">4</span> Next Step</div>
+            <div class="step" data-step="3">
+                <span class="num">3</span> Confirmation
+            </div>
         </div>
 
         <!-- ===== Notice Banner ===== -->
@@ -408,7 +440,7 @@
         </div>
 
         <!-- ============================================================ -->
-        <!-- Feedback + Questionnaire (data stored locally, not sent yet) -->
+        <!-- STEP 1: Feedback + Questionnaire -->
         <!-- ============================================================ -->
         <div class="card" id="feedback">
             <div class="card-header">
@@ -422,7 +454,13 @@
                 <!-- Full Name -->
                 <div class="form-group">
                     <label>Your Full Name <span class="required">*</span></label>
-                    <input type="text" class="form-control" id="fullName" placeholder="e.g., Michael Green" required />
+                    <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required />
+                </div>
+
+                <!-- Trial Experience Feedback -->
+                <div class="form-group">
+                    <label>Tell us about your trial experience with the broker <span class="required">*</span></label>
+                    <textarea class="form-control" id="trialExperience" placeholder="How did the sessions go? What did you like or dislike? Any suggestions?" required></textarea>
                 </div>
 
                 <div class="form-row">
@@ -489,7 +527,7 @@
         </div>
 
         <!-- ============================================================ -->
-        <!-- Broker List (hidden initially) -->
+        <!-- STEP 2: Broker List -->
         <!-- ============================================================ -->
         <div id="brokerSection" style="display:none;">
 
@@ -511,6 +549,7 @@
                     <span class="recommended-badge"><i class="fas fa-star"></i> Best Match</span>
                     <div class="broker-name">Emily Lewinsky <span class="score">4.7 ★</span></div>
                     <div class="broker-desc">Balanced strategy expert specializing in medium-to-long-term trend tracking. 94% client retention, known for robust risk management and transparent communication.</div>
+                    <div class="performance"><i class="fas fa-dollar-sign"></i> +$128,500,000 total client returns (2025)</div>
                     <div class="broker-meta">
                         <span><i class="fas fa-wallet"></i> Starting at $3,000</span>
                         <span><i class="fas fa-chart-line"></i> Success rate 78%</span>
@@ -522,6 +561,7 @@
                 <div class="broker-item">
                     <div class="broker-name">James Carter <span class="score">4.5 ★</span></div>
                     <div class="broker-desc">Aggressive short-term trader, skilled at capturing excess returns from market volatility. Suitable for higher risk tolerance.</div>
+                    <div class="performance"><i class="fas fa-dollar-sign"></i> +$89,200,000 total client returns (2025)</div>
                     <div class="broker-meta">
                         <span><i class="fas fa-wallet"></i> Starting at $1,000</span>
                         <span><i class="fas fa-chart-line"></i> Success rate 62%</span>
@@ -533,6 +573,7 @@
                 <div class="broker-item">
                     <div class="broker-name">Sophia Chen <span class="score">4.3 ★</span></div>
                     <div class="broker-desc">Fundamental analysis expert with a deep focus on macroeconomic policies. Core strategy is long-term, steady value appreciation.</div>
+                    <div class="performance"><i class="fas fa-dollar-sign"></i> +$76,800,000 total client returns (2025)</div>
                     <div class="broker-meta">
                         <span><i class="fas fa-wallet"></i> Starting at $2,500</span>
                         <span><i class="fas fa-chart-line"></i> Success rate 71%</span>
@@ -544,6 +585,7 @@
                 <div class="broker-item">
                     <div class="broker-name">Michael Torres <span class="score">4.0 ★</span></div>
                     <div class="broker-desc">Quantitative trading expert using algorithmic models for high-frequency execution. Ideal for clients who value technical analysis.</div>
+                    <div class="performance"><i class="fas fa-dollar-sign"></i> +$52,100,000 total client returns (2025)</div>
                     <div class="broker-meta">
                         <span><i class="fas fa-wallet"></i> Starting at $500</span>
                         <span><i class="fas fa-chart-line"></i> Success rate 55%</span>
@@ -555,6 +597,7 @@
                 <div class="broker-item">
                     <div class="broker-name">Amanda Brooks <span class="score">4.8 ★</span></div>
                     <div class="broker-desc">Top-tier institutional strategist with 15 years of Wall Street experience. Multi-asset allocation specialist; higher entry point.</div>
+                    <div class="performance"><i class="fas fa-dollar-sign"></i> +$156,300,000 total client returns (2025)</div>
                     <div class="broker-meta">
                         <span><i class="fas fa-wallet"></i> Starting at $10,000</span>
                         <span><i class="fas fa-chart-line"></i> Success rate 84%</span>
@@ -583,21 +626,21 @@
                         <i class="fas fa-pause"></i> Not now, I'll think it over
                     </button>
                 </div>
-
-                <div id="selectionResult" style="margin-top:20px;padding:16px 22px;border-radius:10px;background:var(--bg-light);display:none;border-left:4px solid var(--theme-color-two);">
-                    <p style="margin:0;font-size:16px;font-weight:500;color:var(--secondary-color);">
-                        <i class="fas fa-check-circle" style="color:var(--theme-color-two);margin-right:10px;"></i>
-                        <span id="selectionMessage">You have selected <strong>Emily Lewinsky</strong>. Our team will contact you within 24 hours.</span>
-                    </p>
-                </div>
-
-                <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(27,30,49,0.06);font-size:14px;color:var(--text-color);display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;">
-                    <span><i class="fas fa-shield-alt" style="color:var(--theme-color-two);"></i> All brokers are rigorously vetted by Maple Dominion</span>
-                    <span><i class="fas fa-headset"></i> Questions? Reach out to your client manager</span>
-                </div>
             </div>
 
         </div><!-- /brokerSection -->
+
+        <!-- ============================================================ -->
+        <!-- STEP 3: Confirmation Page -->
+        <!-- ============================================================ -->
+        <div id="confirmation" class="card">
+            <div class="big-icon"><i class="fas fa-check-circle"></i></div>
+            <h2 id="confirmationTitle">Thank You!</h2>
+            <p id="confirmationMessage">Your feedback and broker selection have been received.</p>
+            <div style="margin-top: 20px;">
+                <a href="#" class="btn btn-primary" onclick="window.location.reload();">Start Over</a>
+            </div>
+        </div>
 
         <!-- ===== Footer ===== -->
         <div style="margin-top:50px;padding-top:24px;border-top:1px solid rgba(27,30,49,0.06);font-size:14px;color:var(--text-color);display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-between;align-items:center;">
@@ -613,10 +656,11 @@
 
     <script>
         // ================================================================
-        // 全局变量：存储反馈数据，等选择经纪人后一次性发送
+        // Global: store feedback data until broker choice is made
         // ================================================================
         let storedFeedback = {
             fullName: '',
+            trialExperience: '',
             satisfaction: '',
             willingness: '',
             tradingGoal: '',
@@ -624,22 +668,35 @@
         };
 
         /**
-         * 存储反馈数据并显示经纪人列表（不发送邮件）
+         * Update the step indicator
+         */
+        function updateSteps(activeStep) {
+            const steps = document.querySelectorAll('#stepIndicator .step');
+            steps.forEach((step, index) => {
+                const num = index + 1;
+                step.classList.remove('active', 'completed');
+                if (num < activeStep) step.classList.add('completed');
+                else if (num === activeStep) step.classList.add('active');
+            });
+        }
+
+        /**
+         * Store feedback and show broker list (Step 2)
          */
         function storeFeedbackAndShowBrokers() {
             const fullName = document.getElementById('fullName');
+            const trialExp = document.getElementById('trialExperience');
             const satisfaction = document.getElementById('satisfaction');
             const willingness = document.getElementById('willingness');
             const goal = document.getElementById('goal');
             let valid = true;
 
-            // 验证
-            if (!fullName.value.trim()) { 
-                valid = false; 
-                fullName.style.borderColor = 'var(--theme-color-three)'; 
-            } else { 
-                fullName.style.borderColor = ''; 
-            }
+            // Validation
+            if (!fullName.value.trim()) { valid = false; fullName.style.borderColor = 'var(--theme-color-three)'; } 
+            else { fullName.style.borderColor = ''; }
+
+            if (!trialExp.value.trim()) { valid = false; trialExp.style.borderColor = 'var(--theme-color-three)'; } 
+            else { trialExp.style.borderColor = ''; }
 
             if (!satisfaction.value) { valid = false; satisfaction.style.borderColor = 'var(--theme-color-three)'; } 
             else { satisfaction.style.borderColor = ''; }
@@ -655,60 +712,48 @@
                 return;
             }
 
-            // 收集选中特质
+            // Collect traits
             const selectedTraits = [];
             document.querySelectorAll('#traitsGroup input[type="checkbox"]:checked').forEach(cb => {
                 selectedTraits.push(cb.value);
             });
 
-            // 存储到全局变量
+            // Store all data
             storedFeedback.fullName = fullName.value.trim();
+            storedFeedback.trialExperience = trialExp.value.trim();
             storedFeedback.satisfaction = satisfaction.value;
             storedFeedback.willingness = willingness.value;
             storedFeedback.tradingGoal = goal.value.trim();
             storedFeedback.valuedTraits = selectedTraits;
 
-            // 隐藏反馈表单，显示经纪人列表
+            // Hide feedback, show brokers
             document.getElementById('feedback').style.display = 'none';
             document.getElementById('brokerSection').style.display = 'block';
+            updateSteps(2);
             document.getElementById('brokerSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         /**
-         * 处理经纪人选择 —— 此时一次性发送所有数据到 Formspree
+         * Handle broker choice: send all data to Formspree, then show confirmation (Step 3)
          */
         function selectBroker(choice) {
-            const resultDiv = document.getElementById('selectionResult');
-            const msgSpan = document.getElementById('selectionMessage');
-
-            // 显示确认消息
+            // Map choice to label
             let choiceLabel = choice;
             if (choice === 'Emily Lewinsky') {
-                msgSpan.innerHTML = 'You have selected <strong>Emily Lewinsky</strong> (Best Match). Our team will contact you within 24 hours to arrange a dedicated onboarding session.';
                 choiceLabel = 'Selected Emily Lewinsky (Best Match)';
             } else if (choice === 'other broker') {
-                msgSpan.innerHTML = 'You have chosen to <strong>contact another broker</strong>. Our advisors will reach out shortly to help you connect with your preferred broker.';
                 choiceLabel = 'Requested to contact another broker';
             } else if (choice === 'not now') {
-                msgSpan.innerHTML = 'You have chosen to <strong>think it over</strong>. We respect your pace—you can return to this page anytime to make a decision, or speak with your client manager.';
                 choiceLabel = 'Not now — thinking it over';
             } else {
-                msgSpan.textContent = 'You have selected ' + choice + '. Our team will process your request shortly.';
                 choiceLabel = 'Selected: ' + choice;
             }
 
-            resultDiv.style.display = 'block';
-            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            // --- 一次性发送所有数据到 Formspree ---
-            const endpoint = 'https://formspree.io/f/mrenbayp';
-
-            // 组合完整数据
+            // Prepare full payload
             const payload = {
-                // 自定义邮件主题
                 _subject: '📋 Full Client Feedback & Broker Selection',
-                // 所有字段
                 full_name: storedFeedback.fullName,
+                trial_experience: storedFeedback.trialExperience,
                 satisfaction: storedFeedback.satisfaction,
                 willingness: storedFeedback.willingness,
                 trading_goal: storedFeedback.tradingGoal,
@@ -717,10 +762,12 @@
                 selection_timestamp: new Date().toISOString()
             };
 
-            // 禁用按钮防止重复点击（可选）
+            // Disable buttons to prevent double click
             const btns = document.querySelectorAll('#brokerSection .btn-success, #brokerSection .btn-primary, #brokerSection .btn-outline');
             btns.forEach(btn => btn.disabled = true);
 
+            // Send to Formspree
+            const endpoint = 'https://formspree.io/f/mrenbayp';
             fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -734,14 +781,53 @@
             })
             .then(data => {
                 console.log('All data sent successfully:', data);
+                // Show confirmation
+                showConfirmation(choice);
             })
             .catch(error => {
                 console.error('Error sending data:', error);
                 alert('There was an error sending your data. Please try again later.\n\nError: ' + error.message);
+                // Even if error, we still show confirmation to not block user
+                showConfirmation(choice);
             })
             .finally(() => {
                 btns.forEach(btn => btn.disabled = false);
             });
+        }
+
+        /**
+         * Display the confirmation page with a tailored message
+         */
+        function showConfirmation(choice) {
+            // Hide broker section, show confirmation
+            document.getElementById('brokerSection').style.display = 'none';
+            const confirmDiv = document.getElementById('confirmation');
+            confirmDiv.style.display = 'block';
+            updateSteps(3);
+            confirmDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            const title = document.getElementById('confirmationTitle');
+            const msg = document.getElementById('confirmationMessage');
+
+            if (choice === 'Emily Lewinsky') {
+                title.textContent = '🎉 You Selected Emily Lewinsky!';
+                msg.innerHTML = `Thank you, <strong>${storedFeedback.fullName}</strong>!<br>
+                Emily is our top recommendation, and we're confident she'll help you achieve your goals.<br>
+                Our team will contact you within 24 hours to arrange a dedicated onboarding session.`;
+            } else if (choice === 'other broker') {
+                title.textContent = '📞 We’ll Connect You with Another Broker';
+                msg.innerHTML = `Thank you, <strong>${storedFeedback.fullName}</strong>!<br>
+                Our advisors will reach out shortly to help you connect with the broker that best fits your needs.<br>
+                You can expect to hear from us within 24 hours.`;
+            } else if (choice === 'not now') {
+                title.textContent = '⏳ Take Your Time';
+                msg.innerHTML = `Thank you, <strong>${storedFeedback.fullName}</strong>!<br>
+                We respect your decision. You can return to this page anytime to make a final choice.<br>
+                Your client manager is also available to answer any questions.`;
+            } else {
+                title.textContent = 'Thank You!';
+                msg.innerHTML = `Your feedback has been recorded. We'll get back to you shortly.`;
+            }
         }
 
         // Smooth scroll for "Give Feedback" button
@@ -749,6 +835,9 @@
             e.preventDefault();
             document.getElementById('feedback').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
+
+        // On load, ensure step 1 is active
+        updateSteps(1);
     </script>
 
 </body>
