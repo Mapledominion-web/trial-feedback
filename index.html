@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trial Ended · Choose Your Broker | Maple Dominion</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ===== 样式保持不变（仅截取核心，完整见下方） ===== */
+        :root {
+            --theme-color: #fe5924;
+            --theme-color-two: #26ba5e;
+            --theme-color-three: #ce183d;
+            --secondary-color: #1b1e31;
+            --text-color: #6e6e6e;
+            --title-color: #1b1e31;
+            --text-font: 'Mulish', sans-serif;
+            --title-font: 'Syne', sans-serif;
+            --bg-light: #f8f9fc;
+            --border-radius: 12px;
+            --box-shadow: 0 20px 50px rgba(27, 30, 49, 0.08);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--text-font);
+            font-size: 17px;
+            line-height: 28px;
+            color: var(--text-color);
+            background: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            padding: 40px 0 80px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--title-font);
+            color: var(--title-color);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a { font-family: var(--title-font); text-decoration: none; transition: var(--transition); }
+
+        /* ===== Brand ===== */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--theme-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 800;
+            font-family: var(--title-font);
+        }
+        .brand-name {
+            font-family: var(--title-font);
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--secondary-color);
+            letter-spacing: -0.5px;
+        }
+        .brand-name span { color: var(--theme-color); }
+
+        /* ===== Cards ===== */
+        .card {
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px 45px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(27, 30, 49, 0.04);
+            transition: var(--transition);
+        }
+        .card:hover { box-shadow: 0 30px 60px rgba(27, 30, 49, 0.10); }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .card-header .icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(254, 89, 36, 0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--theme-color);
+            flex-shrink: 0;
+        }
+        .card-header h2 { font-size: 26px; margin: 0; }
+        .card-header .badge {
+            background: var(--theme-color-two);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 4px 16px;
+            border-radius: 50px;
+            margin-left: auto;
+            font-family: var(--title-font);
+        }
+
+        .card-sub {
+            font-size: 15px;
+            color: var(--text-color);
+            margin-top: -6px;
+            margin-bottom: 18px;
+            opacity: 0.8;
+        }
+
+        /* ===== Buttons ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--title-font);
+            font-weight: 600;
+            font-size: 16px;
+            padding: 14px 36px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--secondary-color);
+            color: #fff;
+            letter-spacing: 0.3px;
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(27, 30, 49, 0.20); color: #fff; }
+        .btn-primary { background: var(--theme-color); color: #fff; }
+        .btn-primary:hover { background: #e84a1a; box-shadow: 0 12px 28px rgba(254, 89, 36, 0.35); color: #fff; }
+        .btn-outline { background: transparent; color: var(--secondary-color); border: 2px solid var(--secondary-color); }
+        .btn-outline:hover { background: var(--secondary-color); color: #fff; }
+        .btn-success { background: var(--theme-color-two); color: #fff; }
+        .btn-success:hover { background: #1fa34d; box-shadow: 0 12px 28px rgba(38, 186, 94, 0.35); color: #fff; }
+        .btn-sm { padding: 10px 24px; font-size: 14px; }
+
+        /* ===== Broker Grid ===== */
+        .broker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            margin-top: 10px;
+        }
+
+        .broker-item {
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            padding: 28px 24px 30px;
+            border: 1px solid rgba(27, 30, 49, 0.06);
+            transition: var(--transition);
+            position: relative;
+        }
+        .broker-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(27, 30, 49, 0.08);
+            border-color: rgba(254, 89, 36, 0.15);
+        }
+        .broker-item .broker-name {
+            font-family: var(--title-font);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .broker-item .broker-name .score {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--theme-color);
+            background: rgba(254, 89, 36, 0.08);
+            padding: 2px 14px;
+            border-radius: 50px;
+            font-family: var(--text-font);
+        }
+        .broker-item .broker-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 10px 0 14px;
+            min-height: 70px;
+        }
+        .broker-item .broker-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            font-size: 14px;
+            color: var(--secondary-color);
+            border-top: 1px solid rgba(27, 30, 49, 0.05);
+            padding-top: 16px;
+            margin-top: 4px;
+        }
+        .broker-item .broker-meta span { display: flex; align-items: center; gap: 6px; }
+        .broker-item .broker-meta i { color: var(--theme-color); width: 18px; font-size: 14px; }
+        .broker-item .recommended-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--theme-color-two);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 18px;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            font-family: var(--title-font);
+            text-transform: uppercase;
+        }
+        .broker-item.best-match {
+            border: 2px solid var(--theme-color-two);
+            background: #fafff8;
+        }
+        .broker-item.best-match .broker-name { color: var(--theme-color-two); }
+
+        /* ===== Forms ===== */
+        .form-group { margin-bottom: 24px; }
+        .form-group label {
+            font-family: var(--title-font);
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--secondary-color);
+            display: block;
+            margin-bottom: 6px;
+        }
+        .form-group label .required { color: var(--theme-color-three); margin-left: 2px; }
+        .form-control {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid rgba(27, 30, 49, 0.10);
+            border-radius: 10px;
+            font-family: var(--text-font);
+            font-size: 16px;
+            color: var(--secondary-color);
+            background: #fff;
+            transition: var(--transition);
+        }
+        .form-control:focus {
+            border-color: var(--theme-color);
+            box-shadow: 0 0 0 4px rgba(254, 89, 36, 0.08);
+            outline: none;
+        }
+        textarea.form-control { resize: vertical; min-height: 100px; }
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236e6e6e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            padding-right: 44px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* ===== Notice Banner ===== */
+        .notice-banner {
+            background: var(--secondary-color);
+            border-radius: var(--border-radius);
+            padding: 28px 38px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px 30px;
+            margin-bottom: 40px;
+        }
+        .notice-banner .notice-icon {
+            font-size: 32px;
+            color: var(--theme-color);
+            background: rgba(255, 255, 255, 0.08);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .notice-banner .notice-text { flex: 1; min-width: 200px; }
+        .notice-banner .notice-text h3 { color: #fff; font-size: 22px; margin-bottom: 4px; }
+        .notice-banner .notice-text p { color: rgba(255, 255, 255, 0.75); font-size: 15px; margin: 0; }
+        .notice-banner .notice-action { display: flex; gap: 12px; flex-wrap: wrap; }
+
+        /* ===== Step Indicator ===== */
+        .steps {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .steps .step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--title-font);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .steps .step .num {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(27, 30, 49, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        .steps .step.active .num { background: var(--theme-color); color: #fff; }
+        .steps .step.active { color: var(--secondary-color); }
+        .steps .step-line { width: 30px; height: 2px; background: rgba(27, 30, 49, 0.10); }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            body { padding: 20px 0 50px; }
+            .card { padding: 28px 20px; }
+            .form-row { grid-template-columns: 1fr; }
+            .notice-banner { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+            .broker-grid { grid-template-columns: 1fr; }
+            .brand-name { font-size: 22px; }
+            .card-header h2 { font-size: 22px; }
+            .steps { gap: 4px; }
+            .steps .step { font-size: 12px; }
+            .steps .step-line { width: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .card-header { flex-wrap: wrap; }
+            .card-header .badge { margin-left: 0; }
+            .btn { width: 100%; justify-content: center; }
+            .notice-banner .notice-action { width: 100%; }
+            .notice-banner .notice-action .btn { width: 100%; }
+        }
+
+        .mt-10 { margin-top: 10px; }
+        .mt-20 { margin-top: 20px; }
+        .mt-30 { margin-top: 30px; }
+        .mb-10 { margin-bottom: 10px; }
+        .text-center { text-align: center; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+        .gap-12 { gap: 12px; }
+        .gap-20 { gap: 20px; }
+        .flex-wrap { flex-wrap: wrap; }
+        .w-100 { width: 100%; }
+        .op-6 { opacity: 0.6; }
+        .fw-600 { font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== Brand ===== -->
+        <div class="brand">
+            <div class="brand-icon">M</div>
+            <div class="brand-name">Maple <span>Dominion</span></div>
+        </div>
+
+        <!-- ===== Steps ===== -->
+        <div class="steps">
+            <div class="step active"><span class="num">1</span> Feedback</div>
+            <span class="step-line"></span>
+            <div class="step"><span class="num">2</span> Questionnaire</div>
+            <span class="step-line"></span>
+            <div class="step"><span class="num">3</span> Compare Brokers</div>
+            <span class="step-line"></span>
+            <div class="step"><span class="num">4</span> Next Step</div>
+        </div>
+
+        <!-- ===== Notice Banner ===== -->
+        <div class="notice-banner">
+            <div class="notice-icon"><i class="fas fa-clock"></i></div>
+            <div class="notice-text">
+                <h3>Trial Period Ended</h3>
+                <p>You have completed the 1-week trial and 3 dedicated sessions. Please take 2 minutes to share your experience and choose the best broker.</p>
+            </div>
+            <div class="notice-action">
+                <a href="#feedback" class="btn btn-primary btn-sm"><i class="fas fa-pen-fancy"></i> Give Feedback</a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Feedback + Questionnaire (data stored locally, not sent yet) -->
+        <!-- ============================================================ -->
+        <div class="card" id="feedback">
+            <div class="card-header">
+                <div class="icon"><i class="fas fa-comment-dots"></i></div>
+                <h2>Your Feedback</h2>
+                <span class="badge">Required</span>
+            </div>
+            <p class="card-sub">Your honest feedback helps us match you with the ideal broker.</p>
+
+            <form id="feedbackForm" onsubmit="return false;">
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label>Your Full Name <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="fullName" placeholder="e.g., Michael Green" required />
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Overall Satisfaction <span class="required">*</span></label>
+                        <select class="form-control" id="satisfaction" required>
+                            <option value="">Select one</option>
+                            <option value="5">Very Satisfied (5/5)</option>
+                            <option value="4">Satisfied (4/5)</option>
+                            <option value="3">Average (3/5)</option>
+                            <option value="2">Dissatisfied (2/5)</option>
+                            <option value="1">Very Dissatisfied (1/5)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Willing to continue? <span class="required">*</span></label>
+                        <select class="form-control" id="willingness" required>
+                            <option value="">Select one</option>
+                            <option value="yes">Yes, I am interested</option>
+                            <option value="no">Not at this time</option>
+                            <option value="maybe">Still considering</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>What is your primary trading goal? <span class="required">*</span></label>
+                    <textarea class="form-control" id="goal" placeholder="e.g., I aim for 20% stable returns over 6 months with a low-to-moderate risk approach…" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Top traits you value most in a broker?</label>
+                    <div id="traitsGroup" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:4px;">
+                        <label style="display:flex;align-items:center;gap:6px;font-size:15px;font-weight:400;">
+                            <input type="checkbox" value="low_spreads" /> Low spreads
+                        </label>
+                        <label style="display:flex;align-items:center;gap:6px;font-size:15px;font-weight:400;">
+                            <input type="checkbox" value="high_success" /> High success rate
+                        </label>
+                        <label style="display:flex;align-items:center;gap:6px;font-size:15px;font-weight:400;">
+                            <input type="checkbox" value="low_entry" /> Low entry barrier
+                        </label>
+                        <label style="display:flex;align-items:center;gap:6px;font-size:15px;font-weight:400;">
+                            <input type="checkbox" value="support" /> Customer support
+                        </label>
+                        <label style="display:flex;align-items:center;gap:6px;font-size:15px;font-weight:400;">
+                            <input type="checkbox" value="tools" /> Trading tools
+                        </label>
+                        <label style="display:flex;align-items:center;gap:6px;font-size:15px;font-weight:400;">
+                            <input type="checkbox" value="reputation" /> Brand reputation
+                        </label>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;">
+                    <button type="button" class="btn btn-primary" onclick="storeFeedbackAndShowBrokers()">
+                        <i class="fas fa-arrow-right"></i> Submit & View Brokers
+                    </button>
+                    <span style="font-size:14px;color:var(--text-color);align-self:center;">
+                        <i class="fas fa-lock" style="color:var(--theme-color-two);"></i> Data will be sent only after you choose a broker
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Broker List (hidden initially) -->
+        <!-- ============================================================ -->
+        <div id="brokerSection" style="display:none;">
+
+            <div class="card" style="background:var(--bg-light);border-left:4px solid var(--theme-color-two);">
+                <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+                    <i class="fas fa-check-circle" style="font-size:28px;color:var(--theme-color-two);"></i>
+                    <div>
+                        <h3 style="font-size:20px;margin:0;">Based on your feedback, we have curated 5 brokers for you</h3>
+                        <p style="margin:4px 0 0;font-size:15px;opacity:0.7;">
+                            <strong>Emily Lewinsky</strong> stands out as our top recommendation for balanced performance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="broker-grid">
+                <!-- 1. Emily Lewinsky -->
+                <div class="broker-item best-match">
+                    <span class="recommended-badge"><i class="fas fa-star"></i> Best Match</span>
+                    <div class="broker-name">Emily Lewinsky <span class="score">4.7 ★</span></div>
+                    <div class="broker-desc">Balanced strategy expert specializing in medium-to-long-term trend tracking. 94% client retention, known for robust risk management and transparent communication.</div>
+                    <div class="broker-meta">
+                        <span><i class="fas fa-wallet"></i> Starting at $3,000</span>
+                        <span><i class="fas fa-chart-line"></i> Success rate 78%</span>
+                        <span><i class="fas fa-users"></i> Portfolio $4.2M</span>
+                    </div>
+                </div>
+
+                <!-- 2. James Carter -->
+                <div class="broker-item">
+                    <div class="broker-name">James Carter <span class="score">4.5 ★</span></div>
+                    <div class="broker-desc">Aggressive short-term trader, skilled at capturing excess returns from market volatility. Suitable for higher risk tolerance.</div>
+                    <div class="broker-meta">
+                        <span><i class="fas fa-wallet"></i> Starting at $1,000</span>
+                        <span><i class="fas fa-chart-line"></i> Success rate 62%</span>
+                        <span><i class="fas fa-users"></i> Portfolio $1.8M</span>
+                    </div>
+                </div>
+
+                <!-- 3. Sophia Chen -->
+                <div class="broker-item">
+                    <div class="broker-name">Sophia Chen <span class="score">4.3 ★</span></div>
+                    <div class="broker-desc">Fundamental analysis expert with a deep focus on macroeconomic policies. Core strategy is long-term, steady value appreciation.</div>
+                    <div class="broker-meta">
+                        <span><i class="fas fa-wallet"></i> Starting at $2,500</span>
+                        <span><i class="fas fa-chart-line"></i> Success rate 71%</span>
+                        <span><i class="fas fa-users"></i> Portfolio $3.1M</span>
+                    </div>
+                </div>
+
+                <!-- 4. Michael Torres -->
+                <div class="broker-item">
+                    <div class="broker-name">Michael Torres <span class="score">4.0 ★</span></div>
+                    <div class="broker-desc">Quantitative trading expert using algorithmic models for high-frequency execution. Ideal for clients who value technical analysis.</div>
+                    <div class="broker-meta">
+                        <span><i class="fas fa-wallet"></i> Starting at $500</span>
+                        <span><i class="fas fa-chart-line"></i> Success rate 55%</span>
+                        <span><i class="fas fa-users"></i> Portfolio $0.9M</span>
+                    </div>
+                </div>
+
+                <!-- 5. Amanda Brooks -->
+                <div class="broker-item">
+                    <div class="broker-name">Amanda Brooks <span class="score">4.8 ★</span></div>
+                    <div class="broker-desc">Top-tier institutional strategist with 15 years of Wall Street experience. Multi-asset allocation specialist; higher entry point.</div>
+                    <div class="broker-meta">
+                        <span><i class="fas fa-wallet"></i> Starting at $10,000</span>
+                        <span><i class="fas fa-chart-line"></i> Success rate 84%</span>
+                        <span><i class="fas fa-users"></i> Portfolio $12.7M</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Choose Next Step ===== -->
+            <div class="card" style="margin-top:20px;">
+                <div class="card-header">
+                    <div class="icon"><i class="fas fa-route"></i></div>
+                    <h2>Choose Your Next Step</h2>
+                    <span class="badge" style="background:var(--theme-color-three);">Action</span>
+                </div>
+                <p class="card-sub">You have reviewed all brokers. Now, make your final decision.</p>
+
+                <div style="display:flex;flex-wrap:wrap;gap:16px;margin:10px 0 6px;">
+                    <button class="btn btn-success" onclick="selectBroker('Emily Lewinsky')">
+                        <i class="fas fa-handshake"></i> Select Emily Lewinsky (Recommended)
+                    </button>
+                    <button class="btn btn-primary" onclick="selectBroker('other broker')">
+                        <i class="fas fa-user-plus"></i> Contact another broker
+                    </button>
+                    <button class="btn btn-outline" onclick="selectBroker('not now')">
+                        <i class="fas fa-pause"></i> Not now, I'll think it over
+                    </button>
+                </div>
+
+                <div id="selectionResult" style="margin-top:20px;padding:16px 22px;border-radius:10px;background:var(--bg-light);display:none;border-left:4px solid var(--theme-color-two);">
+                    <p style="margin:0;font-size:16px;font-weight:500;color:var(--secondary-color);">
+                        <i class="fas fa-check-circle" style="color:var(--theme-color-two);margin-right:10px;"></i>
+                        <span id="selectionMessage">You have selected <strong>Emily Lewinsky</strong>. Our team will contact you within 24 hours.</span>
+                    </p>
+                </div>
+
+                <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(27,30,49,0.06);font-size:14px;color:var(--text-color);display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;">
+                    <span><i class="fas fa-shield-alt" style="color:var(--theme-color-two);"></i> All brokers are rigorously vetted by Maple Dominion</span>
+                    <span><i class="fas fa-headset"></i> Questions? Reach out to your client manager</span>
+                </div>
+            </div>
+
+        </div><!-- /brokerSection -->
+
+        <!-- ===== Footer ===== -->
+        <div style="margin-top:50px;padding-top:24px;border-top:1px solid rgba(27,30,49,0.06);font-size:14px;color:var(--text-color);display:flex;flex-wrap:wrap;gap:12px 30px;justify-content:space-between;align-items:center;">
+            <span>&copy; 2026 Maple Dominion. All rights reserved.</span>
+            <span>
+                <i class="fas fa-lock" style="margin-right:4px;"></i> Secure encrypted connection
+                <span style="margin:0 12px;">|</span>
+                <i class="fas fa-clock"></i> Trial ended
+            </span>
+        </div>
+
+    </div><!-- /container -->
+
+    <script>
+        // ================================================================
+        // 全局变量：存储反馈数据，等选择经纪人后一次性发送
+        // ================================================================
+        let storedFeedback = {
+            fullName: '',
+            satisfaction: '',
+            willingness: '',
+            tradingGoal: '',
+            valuedTraits: []
+        };
+
+        /**
+         * 存储反馈数据并显示经纪人列表（不发送邮件）
+         */
+        function storeFeedbackAndShowBrokers() {
+            const fullName = document.getElementById('fullName');
+            const satisfaction = document.getElementById('satisfaction');
+            const willingness = document.getElementById('willingness');
+            const goal = document.getElementById('goal');
+            let valid = true;
+
+            // 验证
+            if (!fullName.value.trim()) { 
+                valid = false; 
+                fullName.style.borderColor = 'var(--theme-color-three)'; 
+            } else { 
+                fullName.style.borderColor = ''; 
+            }
+
+            if (!satisfaction.value) { valid = false; satisfaction.style.borderColor = 'var(--theme-color-three)'; } 
+            else { satisfaction.style.borderColor = ''; }
+
+            if (!willingness.value) { valid = false; willingness.style.borderColor = 'var(--theme-color-three)'; } 
+            else { willingness.style.borderColor = ''; }
+
+            if (!goal.value.trim()) { valid = false; goal.style.borderColor = 'var(--theme-color-three)'; } 
+            else { goal.style.borderColor = ''; }
+
+            if (!valid) {
+                alert('Please fill in all required fields (marked with *).');
+                return;
+            }
+
+            // 收集选中特质
+            const selectedTraits = [];
+            document.querySelectorAll('#traitsGroup input[type="checkbox"]:checked').forEach(cb => {
+                selectedTraits.push(cb.value);
+            });
+
+            // 存储到全局变量
+            storedFeedback.fullName = fullName.value.trim();
+            storedFeedback.satisfaction = satisfaction.value;
+            storedFeedback.willingness = willingness.value;
+            storedFeedback.tradingGoal = goal.value.trim();
+            storedFeedback.valuedTraits = selectedTraits;
+
+            // 隐藏反馈表单，显示经纪人列表
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('brokerSection').style.display = 'block';
+            document.getElementById('brokerSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        /**
+         * 处理经纪人选择 —— 此时一次性发送所有数据到 Formspree
+         */
+        function selectBroker(choice) {
+            const resultDiv = document.getElementById('selectionResult');
+            const msgSpan = document.getElementById('selectionMessage');
+
+            // 显示确认消息
+            let choiceLabel = choice;
+            if (choice === 'Emily Lewinsky') {
+                msgSpan.innerHTML = 'You have selected <strong>Emily Lewinsky</strong> (Best Match). Our team will contact you within 24 hours to arrange a dedicated onboarding session.';
+                choiceLabel = 'Selected Emily Lewinsky (Best Match)';
+            } else if (choice === 'other broker') {
+                msgSpan.innerHTML = 'You have chosen to <strong>contact another broker</strong>. Our advisors will reach out shortly to help you connect with your preferred broker.';
+                choiceLabel = 'Requested to contact another broker';
+            } else if (choice === 'not now') {
+                msgSpan.innerHTML = 'You have chosen to <strong>think it over</strong>. We respect your pace—you can return to this page anytime to make a decision, or speak with your client manager.';
+                choiceLabel = 'Not now — thinking it over';
+            } else {
+                msgSpan.textContent = 'You have selected ' + choice + '. Our team will process your request shortly.';
+                choiceLabel = 'Selected: ' + choice;
+            }
+
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // --- 一次性发送所有数据到 Formspree ---
+            const endpoint = 'https://formspree.io/f/mrenbayp';
+
+            // 组合完整数据
+            const payload = {
+                // 自定义邮件主题
+                _subject: '📋 Full Client Feedback & Broker Selection',
+                // 所有字段
+                full_name: storedFeedback.fullName,
+                satisfaction: storedFeedback.satisfaction,
+                willingness: storedFeedback.willingness,
+                trading_goal: storedFeedback.tradingGoal,
+                valued_traits: storedFeedback.valuedTraits.join(', '),
+                broker_selection: choiceLabel,
+                selection_timestamp: new Date().toISOString()
+            };
+
+            // 禁用按钮防止重复点击（可选）
+            const btns = document.querySelectorAll('#brokerSection .btn-success, #brokerSection .btn-primary, #brokerSection .btn-outline');
+            btns.forEach(btn => btn.disabled = true);
+
+            fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Server responded with status ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('All data sent successfully:', data);
+            })
+            .catch(error => {
+                console.error('Error sending data:', error);
+                alert('There was an error sending your data. Please try again later.\n\nError: ' + error.message);
+            })
+            .finally(() => {
+                btns.forEach(btn => btn.disabled = false);
+            });
+        }
+
+        // Smooth scroll for "Give Feedback" button
+        document.querySelector('.notice-banner .btn')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('feedback').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    </script>
+
+</body>
+</html>
